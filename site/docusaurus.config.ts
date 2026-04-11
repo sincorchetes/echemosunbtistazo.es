@@ -13,6 +13,8 @@ const config: Config = {
   organizationName: "sincorchetes",
   projectName: "echemosunbitstazo",
 
+  trailingSlash: false,
+
   onBrokenLinks: "warn",
   onBrokenAnchors: "warn",
 
@@ -44,6 +46,35 @@ const config: Config = {
         indexBlog: true,
         indexDocs: true,
         searchBarPosition: "right",
+      },
+    ],
+  ],
+
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        createRedirects(existingPath: string) {
+          // /archive/slug/ → /posts/slug
+          if (existingPath.startsWith("/posts/")) {
+            const slug = existingPath.replace("/posts/", "");
+            return [
+              `/archive/${slug}`,
+              `/blog/${slug}`,
+            ];
+          }
+          // /posts/page/N/ → /page/N
+          if (existingPath.match(/^\/page\/\d+$/)) {
+            const pageNum = existingPath.replace("/page/", "");
+            return [`/posts/page/${pageNum}`];
+          }
+          return undefined;
+        },
+        redirects: [
+          { from: "/archive", to: "/" },
+          { from: "/categories", to: "/tags" },
+          { from: "/no-ip", to: "/posts/no-ip-como-obtener-un-acceso-fijo-a-un-servidor" },
+        ],
       },
     ],
   ],
