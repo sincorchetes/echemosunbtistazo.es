@@ -1,0 +1,40 @@
+/**
+ * Echemos un bitstazo - Custom theme
+ * Based on Material teal/cyan palette
+ */
+
+:root {
+  --ifm-color-primary: #009688;
+  --ifm-color-primary-dark: #00897b;
+  --ifm-color-primary-darker: #00796b;
+  --ifm-color-primary-darkest: #00695c;
+  --ifm-color-primary-light: #26a69a;
+  --ifm-color-primary-lighter: #4db6ac;
+  --ifm-color-primary-lightest: #80cbc4;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --ifm-color-primary: #4db6ac;
+  --ifm-color-primary-dark: #26a69a;
+  --ifm-color-primary-darker: #009688;
+  --ifm-color-primary-darkest: #00897b;
+  --ifm-color-primary-light: #80cbc4;
+  --ifm-color-primary-lighter: #b2dfdb;
+  --ifm-color-primary-lightest: #e0f2f1;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Blog post page */
+article .markdown img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Tags styling */
+.tag_node_modules-\@docusaurus-theme-classic-lib-theme-Tag-styles-module {
+  border-radius: 16px;
+}

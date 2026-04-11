@@ -1,0 +1,11 @@
+sincorchetes:
+  name: Álvaro Castillo
+  title: Sysadmin & DevOps Enthusiast
+  image_url: https://gitlab.com/sincorchetes/cdn/-/raw/main/aboutme/me.jpg
+  page: true
+  description: "Administrador de sistemas y entusiasta de DevOps. Apasionado por Linux, la automatización y el software libre."
+  socials:
+    x: sincorchetes
+    linkedin: sincorchetes
+    github: sincorchetes
+    gitlab: https://gitlab.com/sincorchetes
