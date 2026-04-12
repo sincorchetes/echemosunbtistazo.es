@@ -17,19 +17,16 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: nixos/nix:latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: cachix/install-nix-action@v30
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: |
-            extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
-            extra-substituters = https://devenv.cachix.org
-
-      - uses: cachix/cachix-action@v15
-        with:
-          name: devenv
+      - name: Configure Nix
+        run: |
+          echo "extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" >> /etc/nix/nix.conf
+          echo "extra-substituters = https://devenv.cachix.org" >> /etc/nix/nix.conf
+          echo "extra-experimental-features = nix-command flakes" >> /etc/nix/nix.conf
 
       - name: Install devenv
         run: nix profile install --accept-flake-config github:cachix/devenv/latest
