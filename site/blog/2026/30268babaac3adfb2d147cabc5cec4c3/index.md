@@ -44,6 +44,8 @@ Antes de meternos en harina, un apunte sobre compatibilidad. Nix está disponibl
 
 En este tutorial nos centramos en Linux, pero si usas macOS, el proceso es prácticamente idéntico.
 
+También existe una [imagen oficial de Docker para Nix](https://hub.docker.com/r/nixos/nix), pero precisamente uno de los objetivos de Nix es **evitar depender de contenedores** para gestionar entornos de desarrollo. Si puedes ejecutarlo nativamente en tu sistema de forma segura y aislada, ¿para qué meter una capa más?
+
 ## Instalando Nix
 
 La instalación es idéntica en las tres distros. Un solo comando y ya está.
