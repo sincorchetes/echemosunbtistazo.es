@@ -128,6 +128,8 @@ const config: Config = {
           label: "Wiki Técnica",
           position: "left",
         },
+        { to: "/python-path", label: "Python Path", position: "left" },
+        { to: "/nix-path", label: "Nix Path", position: "left" },
         { to: "/tags", label: "Tags", position: "left" },
         {
           href: "https://github.com/sincorchetes",
