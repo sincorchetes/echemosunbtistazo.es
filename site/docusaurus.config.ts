@@ -175,7 +175,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Echemos un bitstazo. Hecho con Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Echemos un bitstazo. Hecho con Docusaurus.<br/>El contenido de este blog está licenciado bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>.`,
     },
     prism: {
       theme: prismThemes.github,
