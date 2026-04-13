@@ -35,6 +35,17 @@ Ese hash garantiza que si cualquier cosa cambia (una dependencia, un flag de com
 
 Imagina que tienes un portátil con Fedora, un servidor con Debian y una VM con Ubuntu. Con Nix, los tres hablan el mismo idioma. Eso es lo que vamos a montar hoy.
 
+## Plataformas soportadas
+
+Antes de meternos en harina, un apunte sobre compatibilidad. Nix está disponible para las siguientes plataformas:
+
+- **Linux:** x86, x86-64 y aarch64
+- **macOS:** x86-64 y aarch64 (Apple Silicon)
+
+En este tutorial nos centramos en Linux, pero si usas macOS, el proceso es prácticamente idéntico.
+
+También existe una [imagen oficial de Docker para Nix](https://hub.docker.com/r/nixos/nix), pero precisamente uno de los objetivos de Nix es **evitar depender de contenedores** para gestionar entornos de desarrollo. Si puedes ejecutarlo nativamente en tu sistema de forma segura y aislada, ¿para qué meter una capa más?
+
 ## Instalando Nix
 
 La instalación es idéntica en las tres distros. Un solo comando y ya está.
@@ -61,7 +72,11 @@ Nix ofrece dos modos de instalación: **single-user** y **multi-user**. Vamos di
 
 ¿Por qué no single-user? Porque instala todo en tu `$HOME`, y si no lo gestionas bien acaba contaminando tu directorio personal con perfiles, enlaces y configuraciones que se mezclan con tus dotfiles. Está pensado para escenarios muy concretos: contenedores sin privilegios, entornos CI donde no tienes root, o pruebas rápidas donde no te importa limpiar después. Para trabajar en el día a día en tu máquina, ni lo contemples.
 
-El modo multi-user crea un daemon del sistema, usuarios dedicados (`nixbld1`, `nixbld2`...) y gestiona todo bajo `/nix/store` de forma limpia, sin tocar tu home. Ejecuta esto:
+El modo multi-user crea un daemon del sistema, usuarios dedicados (`nixbld1`, `nixbld2`...) y gestiona todo bajo `/nix/store` de forma limpia, sin tocar tu home.
+
+**Importante:** la instalación multi-user requiere que tu distribución Linux use **systemd** como sistema de inicio. Debian, Ubuntu y Fedora lo traen por defecto, así que no hay problema. Pero si usas una distro sin systemd (como Void Linux, Artix o Alpine), tendrás que recurrir a la instalación single-user o configurar el daemon manualmente.
+
+Ejecuta esto:
 
 ```shell
 ❯ sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -168,7 +183,9 @@ Y tu sistema vuelve a ser como antes. Sin rastro.
 
 Nix no es solo para NixOS. Es una herramienta que puedes usar **hoy** en tu Debian, Ubuntu o Fedora sin cambiar de distro, sin romper nada y sin complicaciones. Te da aislamiento real, versiones exactas y la tranquilidad de que lo que instalas no contamina tu sistema.
 
-Pero esto es solo rascar la superficie. En el próximo artículo nos ponemos serios: **instalar NixOS desde cero con la ISO live**. Particionado, configuración declarativa, primer boot. Y a partir de ahí, seguiremos desgranando la maquinaria pesada de NixOS: `nix-shell`, flakes, devenv, y todo lo que hace que este ecosistema sea una bestia en entornos de desarrollo y producción. Esto no ha hecho más que empezar.
+Pero esto es solo rascar la superficie. En los próximos artículos seguiremos desgranando la maquinaria pesada de Nix: `nix-shell`, flakes, devenv, y todo lo que hace que este ecosistema sea una bestia en entornos de desarrollo y producción. Y cuando hayamos exprimido Nix a fondo, nos pondremos serios: **instalar NixOS desde cero con la ISO live**. Particionado, configuración declarativa, primer boot.
+
+Por cierto, Nix también funciona en **macOS**, así que si trabajas con un Mac puedes aprovechar prácticamente todo lo que hemos visto aquí. Pero eso queda fuera del alcance de este tutorial, que nos centramos en Linux. Esto no ha hecho más que empezar.
 
 ## Referencias
 
