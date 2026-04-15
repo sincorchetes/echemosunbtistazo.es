@@ -1,8 +1,8 @@
 ---
 uuid: fb4cdac535823072358e582c67835a8d
-title: "Nix, gestor de paquetes"
-slug: /posts/nix-gestor-de-paquetes
-date: 2026-03-20
+title: "Nix, prueba software sin instalarlo"
+slug: /posts/nix-prueba-software-sin-instalarlo
+date: 2026-04-16
 authors:
   - sincorchetes
 tags:
@@ -16,6 +16,8 @@ tags:
 Pero Nix no es solo un gestor de paquetes, también es un lenguaje de programación propio. Y eso abre la puerta a cosas muy interesantes que iremos desgranando en esta serie. Hoy vamos a lo práctico: entornos temporales, ejecuciones ad-hoc y cómo limpiar el store cuando se te vaya de las manos.
 
 <!-- truncate -->
+
+Si todavía no tienes Nix instalado, puedes seguir [el post anterior](/posts/usa-nix-en-debian-ubuntu-o-fedora) donde explico cómo montarlo paso a paso. Funciona en cualquier distro, no necesitas NixOS, así que, vamos al grano dijo la gallina.
 
 Hay varias formas de usar Nix, y a lo largo de esta serie las iremos cubriendo todas. Hoy empezamos por la más directa y la que más vas a usar en el día a día: `nix-shell`.
 
