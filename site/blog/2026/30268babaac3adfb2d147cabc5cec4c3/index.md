@@ -93,15 +93,6 @@ nix (Nix) 2.28.3
 
 _NOTA: La versión puede variar. Lo importante es que responda sin errores._
 
-### Habilitando flakes y nix-command
-
-La experiencia moderna de Nix usa **flakes** y el comando `nix` (en lugar del antiguo `nix-env`). No vienen activados por defecto, así que los habilitamos:
-
-```shell
-❯ mkdir -p ~/.config/nix
-❯ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-```
-
 A partir de aquí, todo lo que hagamos funciona exactamente igual en Debian, Ubuntu y Fedora. Esa es la gracia.
 
 ## Tu primer entorno de desarrollo portable
@@ -109,38 +100,38 @@ A partir de aquí, todo lo que hagamos funciona exactamente igual en Debian, Ubu
 Vamos a lo práctico. Imagina que necesitas trabajar en un proyecto con Node.js 20, Python 3.12 y jq. En lugar de instalar cada cosa con el gestor de paquetes de turno:
 
 ```shell
-❯ nix shell nixpkgs#nodejs_20 nixpkgs#python312 nixpkgs#jq
+❯ nix-shell -p nodejs_20 python312 jq
 ```
 
 Comprobamos:
 
 ```shell
-❯ node --version
+[nix-shell:~]$ node --version
 v20.20.2
 
-❯ python3 --version
+[nix-shell:~]$ python3 --version
 Python 3.12.11
 
-❯ jq --version
+[nix-shell:~]$ jq --version
 jq-1.7.1
 ```
 
-Los tres comandos están disponibles. Sales de la shell, desaparecen. Tu sistema sigue intacto.
+Los tres comandos están disponibles. Sales de la shell con `exit`, desaparecen. Tu sistema sigue intacto.
 
 ## ¿Y si quiero probar software sin ensuciar mi sistema?
 
 Esta es mi parte favorita. ¿Necesitas probar `wireshark` pero no quieres dejarlo instalado? ¿O una versión concreta de `terraform`?
 
 ```shell
-❯ nix shell nixpkgs#wireshark
+❯ nix-shell -p wireshark
 ```
 
-Úsalo. Cuando termines, cierra la shell. No queda rastro en tu sistema. Ni binarios sueltos, ni dependencias huérfanas, ni `apt autoremove` que ejecutar.
+Úsalo. Cuando termines, cierra la shell con `exit`. No queda rastro en tu sistema. Ni binarios sueltos, ni dependencias huérfanas, ni `apt autoremove` que ejecutar.
 
 Y si quieres ejecutarlo directamente sin ni siquiera entrar en una shell:
 
 ```shell
-❯ nix run nixpkgs#cowsay -- "Esto funciona en Debian, Ubuntu y Fedora"
+❯ nix-shell -p cowsay --run "cowsay 'Esto funciona en Debian, Ubuntu y Fedora'"
  ___________________________________________
 < Esto funciona en Debian, Ubuntu y Fedora >
  -------------------------------------------
@@ -183,7 +174,7 @@ Y tu sistema vuelve a ser como antes. Sin rastro.
 
 Nix no es solo para NixOS. Es una herramienta que puedes usar **hoy** en tu Debian, Ubuntu o Fedora sin cambiar de distro, sin romper nada y sin complicaciones. Te da aislamiento real, versiones exactas y la tranquilidad de que lo que instalas no contamina tu sistema.
 
-Pero esto es solo rascar la superficie. En los próximos artículos seguiremos desgranando la maquinaria pesada de Nix: `nix-shell`, flakes, devenv, y todo lo que hace que este ecosistema sea una bestia en entornos de desarrollo y producción. Y cuando hayamos exprimido Nix a fondo, nos pondremos serios: **instalar NixOS desde cero con la ISO live**. Particionado, configuración declarativa, primer boot.
+Pero esto es solo rascar la superficie. En el [post anterior](/posts/nix-gestor-de-paquetes) ya vimos cómo funcionan los entornos temporales con `nix-shell` en detalle. En los próximos artículos seguiremos desgranando la maquinaria pesada de Nix: flakes, devenv, y todo lo que hace que este ecosistema sea una bestia en entornos de desarrollo y producción. Y cuando hayamos exprimido Nix a fondo, nos pondremos serios: **instalar NixOS desde cero con la ISO live**. Particionado, configuración declarativa, primer boot.
 
 Por cierto, Nix también funciona en **macOS**, así que si trabajas con un Mac puedes aprovechar prácticamente todo lo que hemos visto aquí. Pero eso queda fuera del alcance de este tutorial, que nos centramos en Linux. Esto no ha hecho más que empezar.
 
